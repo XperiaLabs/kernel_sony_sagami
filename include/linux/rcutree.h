@@ -40,6 +40,7 @@ void rcu_barrier(void);
 bool rcu_eqs_special_set(int cpu);
 void kfree_rcu_scheduler_running(void);
 void rcu_momentary_dyntick_idle(void);
+void kfree_rcu_scheduler_running(void);
 unsigned long get_state_synchronize_rcu(void);
 void cond_synchronize_rcu(unsigned long oldstate);
 
