@@ -629,26 +629,26 @@ TRACE_EVENT_RCU(rcu_invoke_kfree_callback,
  * argument is a number of elements in array to free, the third is an
  * address of the array holding nr_records entries.
  */
-TRACE_EVENT(rcu_invoke_kfree_bulk_callback,
+TRACE_EVENT_RCU(rcu_invoke_kfree_bulk_callback,
 
-       TP_PROTO(const char *rcuname, unsigned long nr_records, void **p),
+	TP_PROTO(const char *rcuname, unsigned long nr_records, void **p),
 
-       TP_ARGS(rcuname, nr_records, p),
+	TP_ARGS(rcuname, nr_records, p),
 
-       TP_STRUCT__entry(
-               __field(const char *, rcuname)
-               __field(unsigned long, nr_records)
-               __field(void **, p)
-       ),
+	TP_STRUCT__entry(
+		__field(const char *, rcuname)
+		__field(unsigned long, nr_records)
+		__field(void **, p)
+	),
 
-       TP_fast_assign(
-               __entry->rcuname = rcuname;
-               __entry->nr_records = nr_records;
-               __entry->p = p;
-       ),
+	TP_fast_assign(
+		__entry->rcuname = rcuname;
+		__entry->nr_records = nr_records;
+		__entry->p = p;
+	),
 
-       TP_printk("%s bulk=0x%p nr_records=%lu",
-               __entry->rcuname, __entry->p, __entry->nr_records)
+	TP_printk("%s bulk=0x%p nr_records=%lu",
+		__entry->rcuname, __entry->p, __entry->nr_records)
 );
 
 /*
