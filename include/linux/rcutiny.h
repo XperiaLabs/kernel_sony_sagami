@@ -54,7 +54,7 @@ static inline void kfree_call_rcu_nobatch(struct rcu_head *head, rcu_callback_t 
 #define rcu_note_context_switch(preempt) \
 	do { \
 		rcu_qs(); \
-		rcu_tasks_qs(current); \
+		rcu_tasks_qs(current, (preempt)); \
 	} while (0)
 
 static inline int rcu_needs_cpu(u64 basemono, u64 *nextevt)
