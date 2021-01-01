@@ -21,7 +21,6 @@ msm_kgsl-y = \
 	kgsl_util.o
 
 msm_kgsl-$(CONFIG_COMPAT) += kgsl_compat.o
-msm_kgsl-$(CONFIG_DEBUG_FS) += kgsl_debugfs.o
 msm_kgsl-$(CONFIG_ARM_SMMU) += kgsl_iommu.o
 msm_kgsl-$(CONFIG_SYNC_FILE) += kgsl_sync.o
 
@@ -58,7 +57,6 @@ msm_kgsl-y += \
 
 msm_kgsl-$(CONFIG_COMPAT) += adreno_compat.o
 msm_kgsl-$(CONFIG_QCOM_KGSL_CORESIGHT) += adreno_coresight.o
-msm_kgsl-$(CONFIG_DEBUG_FS) += adreno_debugfs.o adreno_profile.o
 msm_kgsl-$(CONFIG_ARM_SMMU) += adreno_iommu.o
 
 obj-$(CONFIG_DEVFREQ_GOV_QCOM_ADRENO_TZ) += governor_msm_adreno_tz.o
