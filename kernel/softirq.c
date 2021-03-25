@@ -381,10 +381,10 @@ void irq_enter(void)
 
 static inline void invoke_softirq(void)
 {
-	if (should_defer_to_ksoftirqd(local_softirq_pending()))
-		return;
+        if (should_defer_to_ksoftirqd(local_softirq_pending()))
+                return;
 
-	if (!force_irqthreads) {
+        if (!force_irqthreads || !__this_cpu_read(ksoftirqd)) {
 #ifdef CONFIG_HAVE_IRQ_EXIT_ON_IRQ_STACK
 		/*
 		 * We can safely execute softirq on the current stack if
