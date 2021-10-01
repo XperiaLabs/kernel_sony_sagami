@@ -1272,6 +1272,10 @@ static void _dsi_display_setup_misr(struct dsi_display *display)
 	}
 }
 
+extern int dsi_panel_set_aod_mode(struct dsi_panel *panel, int level);
+
+extern void zram_set_screen_state(bool on);
+
 int dsi_display_set_power(struct drm_connector *connector,
 		int power_mode, void *disp)
 {
@@ -1297,11 +1301,12 @@ int dsi_display_set_power(struct drm_connector *connector,
 		if ((display->panel->power_mode == SDE_MODE_DPMS_LP1) ||
 			(display->panel->power_mode == SDE_MODE_DPMS_LP2))
 			rc = dsi_panel_set_nolp(display->panel);
-#ifdef CONFIG_DRM_SDE_SPECIFIC_PANEL
-		sec_ts_lpmode_disable();
-#endif
+		}
+		zram_set_screen_state(true);
 		break;
 	case SDE_MODE_DPMS_OFF:
+		zram_set_screen_state(false);
+		break;
 	default:
 		return rc;
 	}
