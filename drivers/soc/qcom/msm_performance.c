@@ -170,6 +170,7 @@ cleanup:
 	}
 	return ret;
 }
+extern int kp_active_mode(void);
 
 /*******************************sysfs start************************************/
 static int set_cpu_min_freq(const char *buf, const struct kernel_param *kp)
@@ -191,6 +192,9 @@ static int set_cpu_min_freq(const char *buf, const struct kernel_param *kp)
 		}
 		ready_for_freq_updates = true;
 	}
+
+	if (kp_active_mode() == 1)
+	  return 0;
 
 	while ((cp = strpbrk(cp + 1, " :")))
 		ntokens++;
@@ -284,6 +288,9 @@ static int set_cpu_max_freq(const char *buf, const struct kernel_param *kp)
 		}
 		ready_for_freq_updates = true;
 	}
+
+	if (kp_active_mode() == 1)
+	  return 0;
 
 	while ((cp = strpbrk(cp + 1, " :")))
 		ntokens++;
