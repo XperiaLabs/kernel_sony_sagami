@@ -1272,8 +1272,6 @@ static void _dsi_display_setup_misr(struct dsi_display *display)
 	}
 }
 
-extern int dsi_panel_set_aod_mode(struct dsi_panel *panel, int level);
-
 extern void zram_set_screen_state(bool on);
 
 int dsi_display_set_power(struct drm_connector *connector,
